@@ -1,0 +1,168 @@
+/*     color: #b5ae84;
+    color: #c6c9a9;
+    color: #3f547a;
+    color: #557e9e;
+    color: #adced1; */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+body {
+    background: url(../images/cover.jpg) repeat;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    outline: none;
+}
+
+.main {
+    background: white;
+    height: max-content;
+    opacity: 97%;
+}
+
+.goodsList {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.headerTop {
+    height: 50px;
+    background: #557e9e;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.headerBottom {
+    border-bottom: 1px grey solid;
+    background: gainsboro;
+}
+
+.headerTopLink {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    font-size: 35px;
+    line-height: 50px;
+    margin-left: 40px;
+}
+
+.headerLink {
+    color: whitesmoke;
+}
+
+.headerLink:hover {
+    color: #adced1;
+}
+
+.headerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerBottomList {
+    display: flex;
+    list-style-type: none;
+}
+
+.headerBottomLink {
+    color: #557e9e;
+    font-size: 25px;
+    line-height: 70px;
+    text-decoration: none;
+    padding: 0 50px 0 50px;
+    text-transform: uppercase;
+}
+
+.headerBottomLink:hover {
+    color: whitesmoke;
+    background: #557e9e;
+}
+
+.cartButton {
+    margin-right: 80px;
+    width: 200px;
+    border-radius: 50px;
+    color: whitesmoke;
+    background: #b5ae84;
+    text-transform: uppercase;
+    font-size: 25px;
+    border: none;
+    box-shadow: 2px 2px grey;
+}
+
+.cartButton:hover {
+    background: #557e9e;
+    box-shadow: none;
+}
+
+.footer {
+    text-transform: uppercase;
+    border-top: 1px grey solid;
+    text-align: center;
+    background: #557e9e;
+    margin-bottom: 20px;
+}
+
+.footerText {
+    color: whitesmoke;
+    line-height: 50px;
+}
+
+h3 {
+    font-size: 16px;
+    color: #b5ae84;
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+
+p {
+    font-size: 16px;
+    color: #3f547a;
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+
+.goodsItem:hover {
+    transform: scale(1.05);
+}
+
+.goodsItem {
+    text-align: center;
+    text-decoration: none;
+    transition: 1s;
+    width: 350px;
+    height: 260px;
+    border: grey 1px solid;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.byBtn {
+    width: 120px;
+    height: 30px;
+    border-radius: 15px;
+    color: whitesmoke;
+    background: #b5ae84;
+    font-size: 14px;
+    border: none;
+    box-shadow: 2px 2px grey;
+}
+
+.byBtn:hover {
+    background: #b5ae84;
+    box-shadow: none;
+}
+
+.productImg {
+    border-radius: 15px 15px 0 0;
+}
