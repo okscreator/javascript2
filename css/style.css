@@ -21,6 +21,21 @@ body {
     outline: none;
 }
 
+.totalPrice {
+    display: none;
+    text-align: center;
+    border: 1px solid #000;
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color: whitesmoke;
+    background: #c6c9a9;
+    font-size: 35px;
+    border: none;
+}
+
 .main {
     background: white;
     height: max-content;
