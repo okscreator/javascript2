@@ -1,117 +1,148 @@
-var btnBasket = document.getElementById('basketBtn');
-//Так и не понял почему getElementByClassName не работает ;(
+//Задание 1-2
 
-class goodsItem {
-    constructor(title, price) {
-        this.title = title;
-        this.price = price;
+document.querySelector(".buttonChange").addEventListener('click', () => {
+    let str = document.querySelectorAll('.textBox li');
+    for (let elem of str) {
+        const regexp = /\'/g;
+        elem.replaceChildren(elem.innerText.replace(regexp, '\"'));
+    };
+});
+
+document.querySelector(".buttonChangeArent").addEventListener('click', () => {
+    let str = document.querySelectorAll('.textBox li');
+    for (let elem of str) {
+        const regexp = /\B\'/g;
+        elem.replaceChildren(elem.innerText.replace(regexp, '\"'));
+    };
+});
+
+//Задание 3
+var form = document.forms.regform;
+var spanErrorText = document.getElementsByClassName('error-text');
+var inputArea = document.getElementsByClassName('form-box__area');
+
+
+var clearErrorText = () => {
+    for (let n = 0; n < spanErrorText.length; n++) {
+        spanErrorText[n].innerText = ' ';
+    }
+};
+
+
+var clearInputArea = () => {
+    for (let n = 0; n < inputArea.length; n++) {
+        let classList = inputArea[n].classList;
+        console.log(classList);
+
+        if (classList.contains('input_error') === true) {
+            classList.remove("input_error");
+            classList.remove("p_error");
+        }
+    }
+};
+
+var formValidation = function (e) {
+    e.preventDefault();
+    console.log('Run validation');
+
+    clearErrorText();
+    clearInputArea();
+
+    let name = form.elements.name;
+    let mail = form.elements.email;
+    let telephone = form.elements.telephone;
+
+    let result = true;
+
+    if (nameValidation(name) == false) {
+
+        result = false;
     }
 
-    render() {
-        return `<div class="goodsItem"><h3>${this.title}</h3><p>${this.price}</p></div>`;
+    if (mailValidation(mail) == false) {
+        result = false;
     }
 
-}
-
-class GoodsList {
-    constructor() {
-        this.goods = [];
+    if (telephoneValidation(telephone) == false) {
+        result = false;
     }
 
-    fetchGoods() {
-        this.goods = [
-            { title: 'Shirt', price: 150 },
-            { title: 'Socks', price: 50 },
-            { title: 'Jacket', price: 350 },
-            { title: 'Shoes', price: 250 },
-            { title: 'Shirt', price: 150 },
-            { title: 'Socks', price: 50 },
-            { title: 'Jacket', price: 350 },
-            { title: 'Shoes', price: 250 },
-            { title: 'Shirt', price: 150 },
-            { title: 'Socks', price: 50 },
-            { title: 'Jacket', price: 350 },
-            { title: 'Shoes', price: 250 },
-        ];
+    if (result == false) {
+        document.getElementById('form-box__area__headline').innerText = "Ошибка валидации!"
+    }
+    if (result == true) {
+        document.getElementById('form-box__area__headline').innerText = "Спасибо! Ваши данные приняты!"
     }
 
-    render() {
-        let listHtml = "";
-        this.goods.forEach(good => {
-            const goodItem = new goodsItem(good.title, good.price);
-            listHtml += goodItem.render();
-        })
+    return result;
+};
 
-        document.querySelector('.goodsList').innerHTML = listHtml;
+
+var nameValidation = (name) => {
+    console.log('funcNameValid');
+
+    let regexp = /^[A-Za-zА-Яа-я ]+$/;
+
+    if (name.value == '') {
+        spanErrorText[0].innerText = 'Заполните поле!';
+        return false;
+    }
+    if (name.value.match(regexp)) {
+        return true;
+    } else {
+        spanErrorText[0].innerText = 'Имя может содержать только буквы и пробел';
+        name.classList.add("input_error");
+        name.classList.add("p_error");
+        name.focus();
+        return false;
+    }
+};
+
+
+var mailValidation = (mail) => {
+    console.log('funcMailValid');
+
+    let regexp = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+
+    if (mail.value == '') {
+        spanErrorText[1].innerText = 'Заполните поле!';
+        return false;
+    }
+    if (mail.value.match(regexp)) {
+        return true;
+    } else {
+
+        spanErrorText[1].innerText = 'Адрес эл. почты может содежрать латинские буквы (@, . - _)';
+        mail.classList.add("input_error");
+        mail.classList.add("p_error");
+        mail.focus();
+        return false;
+    }
+};
+
+
+var telephoneValidation = (telephone) => {
+    console.log('funcPhoneValid');
+
+    let regexp = /^\+\d{1}\(\d{3}\)\d{3}-\d{4}$/;
+
+    if (telephone.value == '' || telephone.value == '+7(000)000-0000') {
+        spanErrorText[2].innerText = 'Заполните поле!';
+        return false;
     }
 
-    //Метод, определяющий суммарную стоимость всех товаров
-    totalCartPrice() {
-        let totalPrice = document.getElementById('totalPrice');
-        let sum = 0;
-        this.goods.forEach(good => {
-            sum += good.price;
-        });
-        totalPrice.innerText = `Cуммарная стоимость всех товаров ${sum} рублей.`;
+    if (telephone.value.match(regexp)) {
+        return true;
+    } else {
+
+        spanErrorText[2].innerText = 'Телефон введите в формате +7(000)000-0000';
+        telephone.classList.add("input_error");
+        telephone.classList.add("p_error");
+        telephone.focus();
+        return false;
     }
-}
+};
 
-//Класс корзина
-class Cart {
-    constructor() {
-        this.goods = [];
-    }
 
-    render() {
-        let listHtml = '';
-        let goodsList = document.getElementById('totalPrice');
 
-        this.goods.forEach((goodsItem, render) => {
-            listHtml += goodsItem.render(render);
-        });
-        goodsList.innerHTML = listHtml;
 
-        this.totalCartPrice();
-    }
-
-    //метод добавления товара в корзину
-    addItemToCart(product) {
-    }
-
-    //метод выхода из корзины и продолжения покупок
-    continuePurchases() {
-    }
-
-    //Метод для вывода итоговой суммы корзины
-    totalCartPrice() {
-    }
-
-}
-
-//Класс элемента корзины
-class CartItem {
-    constructor() {
-        this.goods = [];
-    }
-
-    //Метод удаления товара из корзины
-    deleteItemFromCart(product) {
-    }
-
-    //Метод изменения количества товара в корзине
-    quantityItemFromCart(product) {
-    }
-
-}
-
-var renderPrice = () => {
-    const total = new GoodsList();
-    total.fetchGoods();
-    total.totalCartPrice();
-    totalPrice.style.display = 'block';
-}
-
-const list = new GoodsList();
-list.fetchGoods();
-list.render();
-btnBasket.addEventListener('click', renderPrice);
