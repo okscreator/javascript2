@@ -22,6 +22,7 @@ body {
 }
 
 .totalPrice {
+    position: relative;
     display: none;
     text-align: center;
     border: 1px solid #000;
@@ -44,7 +45,7 @@ body {
 
 .goodsList {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -118,6 +119,38 @@ body {
 .cartButton:hover {
     background: #557e9e;
     box-shadow: none;
+}
+
+.btnOrder {
+    width: 100px;
+    border-radius: 50px;
+    color: whitesmoke;
+    background: #b5ae84;
+    text-transform: uppercase;
+    font-size: 13px;
+    border: none;
+    box-shadow: 2px 2px grey;
+}
+
+.btnOrder:hover {
+    background: #557e9e;
+    box-shadow: none;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    border-bottom-left-radius: 50px;
+    color: whitesmoke;
+    background: #b5ae84;
+    font-size: 13px;
+    border: none;
+}
+
+.closeButton:hover {
+    background: #557e9e;
 }
 
 .footer {
